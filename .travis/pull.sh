@@ -11,7 +11,7 @@ if [ $EXIT_CODE -ne 0 ]; then
   exit $EXIT_CODE
 fi
 
-xmllint --format $FILE_ORIG >$FILE_MEW
+xmllint --format $FILE_ORIG >$FILE_NEW
 
 if [ -f $FILE ] && [ -z "$(diff $FILE_NEW $FILE)" ]; then
   export CHANGED=0
