@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mattesilver/silverexchange.svg?branch=master)](https://travis-ci.org/mattesilver/allegro-soap)
+[![Build Status](https://travis-ci.com/mattesilver/allegro-soap.svg?branch=master)](https://travis-ci.com/mattesilver/allegro-soap)
 
 [WSDL](https://webapi.allegro.pl/service.php?wsdl) monitor for [allegro.pl](https://developer.allegro.pl) SOAP service.
 ===

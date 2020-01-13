@@ -6,7 +6,6 @@ setup_git() {
 }
 
 commit_changes() {
-  VERSION=`cat VERSION`
   git add allegro-soap.xml allegro-soap.orig.xml VERSION
   git commit --message "New WSDL version: $VERSION"
 }
