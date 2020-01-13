@@ -1,18 +1,18 @@
 #!/bin/bash
 
 setup_git() {
-  git config --global user.email "travis@travis-ci.org"
+  git config --global user.email "rafalkrupinski@users.noreply.github.com"
   git config --global user.name "Travis CI"
 }
 
 commit_changes() {
   VERSION=`cat VERSION`
-  git add allegro-openapi.yaml VERSION
-  git commit --message "New swagger file version: $VERSION"
+  git add allegro-soap.xml allegro-soap.orig.xml VERSION
+  git commit --message "New WSDL version: $VERSION"
 }
 
 upload_files() {
-  git remote add my-origin https://${GH_TOKEN}@github.com/mattesilver/allegro-swagger.git > /dev/null 2>&1
+  git remote add my-origin https://${GH_TOKEN}@github.com/mattesilver/allegro-soap.git > /dev/null 2>&1
   git push --set-upstream my-origin $TRAVIS_BRANCH
 }
 
