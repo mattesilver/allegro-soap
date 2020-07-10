@@ -2,46 +2,6 @@
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://webapi.allegro.pl/service.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="service" targetNamespace="https://webapi.allegro.pl/service.php">
   <types>
     <xsd:schema targetNamespace="https://webapi.allegro.pl/service.php" elementFormDefault="qualified" attributeFormDefault="unqualified">
-      <xsd:complexType name="PackageInfoStruct">
-        <xsd:all>
-          <xsd:element name="operatorId" type="xsd:int"/>
-          <xsd:element name="packageId" type="xsd:string"/>
-          <xsd:element name="operatorName" type="xsd:string" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPackageinfostruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PackageInfoStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="DoAddPackageInfoToPostBuyFormRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="transactionId" type="xsd:long"/>
-            <xsd:element name="packageInfo" type="tns:ArrayOfPackageinfostruct" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="ArrayOfString">
-        <xsd:sequence>
-          <xsd:element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormPackageInfoStruct">
-        <xsd:all>
-          <xsd:element name="packageIdsAdded" type="tns:ArrayOfString" minOccurs="0"/>
-          <xsd:element name="packageIdsNotAddedIncorrectOperatorId" type="tns:ArrayOfString" minOccurs="0"/>
-          <xsd:element name="packageIdsNotAddedIncorrectPackageId" type="tns:ArrayOfString" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:element name="doAddPackageInfoToPostBuyFormResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="postBuyFormPackageInfo" type="tns:PostBuyFormPackageInfoStruct"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="DoGetBidItem2Request">
         <xsd:complexType>
           <xsd:sequence>
@@ -50,6 +10,11 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+          <xsd:element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
       <xsd:complexType name="BidListStruct2">
         <xsd:all>
           <xsd:element name="bidsArray" type="tns:ArrayOfString" minOccurs="0"/>
@@ -93,64 +58,11 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="DoGetDealsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionHandle" type="xsd:string"/>
-            <xsd:element name="itemId" type="xsd:long"/>
-            <xsd:element name="buyerId" type="xsd:int"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="DealsStruct">
-        <xsd:all>
-          <xsd:element name="dealId" type="xsd:long"/>
-          <xsd:element name="dealDate" type="xsd:long"/>
-          <xsd:element name="dealQuantity" type="xsd:int"/>
-          <xsd:element name="dealAmountOriginal" type="xsd:float"/>
-          <xsd:element name="dealAmountDiscounted" type="xsd:float"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfDealsstruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:DealsStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetDealsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="dealsList" type="tns:ArrayOfDealsstruct" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetFilledPostBuyFormsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="paymentType" type="xsd:int" minOccurs="0"/>
-            <xsd:element name="userRole" type="xsd:int"/>
-            <xsd:element name="fillingTimeFrom" type="xsd:long" minOccurs="0"/>
-            <xsd:element name="fillingTimeTo" type="xsd:long" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:complexType name="ArrayOfLong">
         <xsd:sequence>
           <xsd:element name="item" type="xsd:long" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
       </xsd:complexType>
-      <xsd:complexType name="FilledPostBuyFormsStruct">
-        <xsd:all>
-          <xsd:element name="transactionIds" type="tns:ArrayOfLong" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:element name="doGetFilledPostBuyFormsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="filledPostBuyForms" type="tns:FilledPostBuyFormsStruct"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="DoGetItemsInfoRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -367,116 +279,6 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="DoGetMyDataRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionHandle" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="UserDataStruct">
-        <xsd:all>
-          <xsd:element name="userId" type="xsd:long"/>
-          <xsd:element name="userLogin" type="xsd:string"/>
-          <xsd:element name="userRating" type="xsd:int"/>
-          <xsd:element name="userFirstName" type="xsd:string"/>
-          <xsd:element name="userLastName" type="xsd:string"/>
-          <xsd:element name="userMaidenName" type="xsd:string"/>
-          <xsd:element name="userCompany" type="xsd:string"/>
-          <xsd:element name="userCountryId" type="xsd:int"/>
-          <xsd:element name="userStateId" type="xsd:int"/>
-          <xsd:element name="userPostcode" type="xsd:string"/>
-          <xsd:element name="userCity" type="xsd:string"/>
-          <xsd:element name="userAddress" type="xsd:string"/>
-          <xsd:element name="userEmail" type="xsd:string"/>
-          <xsd:element name="userPhone" type="xsd:string"/>
-          <xsd:element name="userPhone2" type="xsd:string"/>
-          <xsd:element name="userSsStatus" type="xsd:int"/>
-          <xsd:element name="siteCountryId" type="xsd:int"/>
-          <xsd:element name="userJuniorStatus" type="xsd:int"/>
-          <xsd:element name="userBirthDate" type="xsd:long"/>
-          <xsd:element name="userHasShop" type="xsd:int"/>
-          <xsd:element name="userCompanyIcon" type="xsd:int"/>
-          <xsd:element name="userIsAllegroStandard" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="InvoiceDataStruct">
-        <xsd:all>
-          <xsd:element name="companyName" type="xsd:string"/>
-          <xsd:element name="companyNip" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="CompanyExtraDataStruct">
-        <xsd:all>
-          <xsd:element name="companyType" type="xsd:string"/>
-          <xsd:element name="companyNip" type="xsd:string"/>
-          <xsd:element name="companyRegon" type="xsd:string"/>
-          <xsd:element name="companyKrs" type="xsd:string"/>
-          <xsd:element name="companyActivitySort" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="CompanySecondAddressStruct">
-        <xsd:all>
-          <xsd:element name="companyWorkerFirstName" type="xsd:string"/>
-          <xsd:element name="companyWorkerLastName" type="xsd:string"/>
-          <xsd:element name="companyAddress" type="xsd:string"/>
-          <xsd:element name="companyPostcode" type="xsd:string"/>
-          <xsd:element name="companyCity" type="xsd:string"/>
-          <xsd:element name="companyCountryId" type="xsd:int"/>
-          <xsd:element name="companyStateId" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="PharmacyDataStruct">
-        <xsd:all>
-          <xsd:element name="pharmacyOpeningDate" type="xsd:string"/>
-          <xsd:element name="pharmacyExpirationDate" type="xsd:string"/>
-          <xsd:element name="pharmacyName" type="xsd:string"/>
-          <xsd:element name="pharmacyPharmacistFullName" type="xsd:string"/>
-          <xsd:element name="pharmacyAddress" type="xsd:string"/>
-          <xsd:element name="pharmacyPostcode" type="xsd:string"/>
-          <xsd:element name="pharmacyCity" type="xsd:string"/>
-          <xsd:element name="pharmacyCommune" type="xsd:string"/>
-          <xsd:element name="pharmacyCountryId" type="xsd:int"/>
-          <xsd:element name="pharmacyStateId" type="xsd:int"/>
-          <xsd:element name="pharmacyPermitNumber" type="xsd:string"/>
-          <xsd:element name="pharmacyPermitInfo" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="AlcoholDataStruct">
-        <xsd:all>
-          <xsd:element name="alcoholOpeningDate" type="xsd:string"/>
-          <xsd:element name="alcoholExpirationDate" type="xsd:string"/>
-          <xsd:element name="alcoholShopName" type="xsd:string"/>
-          <xsd:element name="alcoholShopAddress" type="xsd:string"/>
-          <xsd:element name="alcoholShopPostcode" type="xsd:string"/>
-          <xsd:element name="alcoholShopCity" type="xsd:string"/>
-          <xsd:element name="alcoholShopCommune" type="xsd:string"/>
-          <xsd:element name="alcoholShopCountryId" type="xsd:int"/>
-          <xsd:element name="alcoholShopStateId" type="xsd:int"/>
-          <xsd:element name="alcoholPermitNumber" type="xsd:string"/>
-          <xsd:element name="alcoholPermitAuthority" type="xsd:string"/>
-          <xsd:element name="alcoholPermitInfo" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="RelatedPersonsStruct">
-        <xsd:all>
-          <xsd:element name="spouseFirstName" type="xsd:string"/>
-          <xsd:element name="spouseLastName" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:element name="doGetMyDataResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="userData" type="tns:UserDataStruct"/>
-            <xsd:element name="invoiceData" type="tns:InvoiceDataStruct"/>
-            <xsd:element name="companyExtraData" type="tns:CompanyExtraDataStruct"/>
-            <xsd:element name="companySecondAddress" type="tns:CompanySecondAddressStruct"/>
-            <xsd:element name="pharmacyData" type="tns:PharmacyDataStruct"/>
-            <xsd:element name="alcoholData" type="tns:AlcoholDataStruct"/>
-            <xsd:element name="relatedPersons" type="tns:RelatedPersonsStruct"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="DoGetMyPaymentsInfoRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -529,436 +331,6 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="DoGetPaymentMethodsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="itemIds" type="tns:ArrayOfLong" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="PaymentMethodStruct">
-        <xsd:all>
-          <xsd:element name="paymentMethodId" type="xsd:string"/>
-          <xsd:element name="paymentMethodName" type="xsd:string"/>
-          <xsd:element name="paymentMethodImage" type="xsd:string"/>
-          <xsd:element name="paymentMethodUsage" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPaymentmethodstruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PaymentMethodStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetPaymentMethodsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="paymentMethods" type="tns:ArrayOfPaymentmethodstruct" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetPostBuyDataRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionHandle" type="xsd:string"/>
-            <xsd:element name="itemsArray" type="tns:ArrayOfLong" minOccurs="0"/>
-            <xsd:element name="buyerFilterArray" type="tns:ArrayOfLong" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="UserSentToDataStruct">
-        <xsd:all>
-          <xsd:element name="userId" type="xsd:long"/>
-          <xsd:element name="userFirstName" type="xsd:string"/>
-          <xsd:element name="userLastName" type="xsd:string"/>
-          <xsd:element name="userCompany" type="xsd:string"/>
-          <xsd:element name="userCountryId" type="xsd:int"/>
-          <xsd:element name="userPostcode" type="xsd:string"/>
-          <xsd:element name="userCity" type="xsd:string"/>
-          <xsd:element name="userAddress" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="UserPostBuyDataStruct">
-        <xsd:all>
-          <xsd:element name="userData" type="tns:UserDataStruct"/>
-          <xsd:element name="userSentToData" type="tns:UserSentToDataStruct"/>
-          <xsd:element name="userBankAccounts" type="tns:ArrayOfString" minOccurs="0"/>
-          <xsd:element name="companySecondAddress" type="tns:CompanySecondAddressStruct"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfUserpostbuydatastruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:UserPostBuyDataStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="ItemPostBuyDataStruct">
-        <xsd:all>
-          <xsd:element name="itemId" type="xsd:long"/>
-          <xsd:element name="usersPostBuyData" type="tns:ArrayOfUserpostbuydatastruct" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfItempostbuydatastruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:ItemPostBuyDataStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetPostBuyDataResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="itemsPostBuyData" type="tns:ArrayOfItempostbuydatastruct" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetPostBuyFormsDataForSellersRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="transactionsIdsArray" type="tns:ArrayOfLong" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="PostBuyFormItemDealsVariantStruct">
-        <xsd:all>
-          <xsd:element name="variantName" type="xsd:string"/>
-          <xsd:element name="variantValue" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormItemDealsAdditionalServiceStruct">
-        <xsd:all>
-          <xsd:element name="additionalServiceDefinitionId" type="xsd:string"/>
-          <xsd:element name="additionalServiceName" type="xsd:string"/>
-          <xsd:element name="additionalServiceQuantity" type="xsd:int"/>
-          <xsd:element name="additionalServicePrice" type="xsd:float"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPostbuyformitemdealsadditionalservicestruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PostBuyFormItemDealsAdditionalServiceStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormItemDealsStruct">
-        <xsd:all>
-          <xsd:element name="dealId" type="xsd:long"/>
-          <xsd:element name="dealFinalPrice" type="xsd:float"/>
-          <xsd:element name="dealQuantity" type="xsd:int"/>
-          <xsd:element name="dealDate" type="xsd:dateTime"/>
-          <xsd:element name="dealWasDiscounted" type="xsd:boolean"/>
-          <xsd:element name="dealVariant" type="tns:PostBuyFormItemDealsVariantStruct" minOccurs="0"/>
-          <xsd:element name="dealAdditionalServices" type="tns:ArrayOfPostbuyformitemdealsadditionalservicestruct" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPostbuyformitemdealsstruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PostBuyFormItemDealsStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormItemStruct">
-        <xsd:all>
-          <xsd:element name="postBuyFormItQuantity" type="xsd:int"/>
-          <xsd:element name="postBuyFormItAmount" type="xsd:float"/>
-          <xsd:element name="postBuyFormItId" type="xsd:long"/>
-          <xsd:element name="postBuyFormItTitle" type="xsd:string"/>
-          <xsd:element name="postBuyFormItCountry" type="xsd:int"/>
-          <xsd:element name="postBuyFormItPrice" type="xsd:float"/>
-          <xsd:element name="postBuyFormItDeals" type="tns:ArrayOfPostbuyformitemdealsstruct" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPostbuyformitemstruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PostBuyFormItemStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormAddressStruct">
-        <xsd:all>
-          <xsd:element name="postBuyFormAdrCountry" type="xsd:int"/>
-          <xsd:element name="postBuyFormAdrStreet" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrPostcode" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrCity" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrFullName" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrCompany" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrPhone" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrNip" type="xsd:string"/>
-          <xsd:element name="postBuyFormCreatedDate" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdrType" type="xsd:int"/>
-          <xsd:element name="postBuyFormAdrId" type="xsd:string" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormShipmentTrackingStruct">
-        <xsd:all>
-          <xsd:element name="postBuyFormOperatorId" type="xsd:int"/>
-          <xsd:element name="postBuyFormOperatorName" type="xsd:string"/>
-          <xsd:element name="postBuyFormPackageId" type="xsd:string"/>
-          <xsd:element name="postBuyFormPackageStatus" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPostbuyformshipmenttrackingstruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PostBuyFormShipmentTrackingStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="PostBuyFormDataStruct">
-        <xsd:all>
-          <xsd:element name="postBuyFormId" type="xsd:long"/>
-          <xsd:element name="postBuyFormItems" type="tns:ArrayOfPostbuyformitemstruct" minOccurs="0"/>
-          <xsd:element name="postBuyFormBuyerId" type="xsd:long"/>
-          <xsd:element name="postBuyFormAmount" type="xsd:float"/>
-          <xsd:element name="postBuyFormPostageAmount" type="xsd:float"/>
-          <xsd:element name="postBuyFormInvoiceOption" type="xsd:int"/>
-          <xsd:element name="postBuyFormMsgToSeller" type="xsd:string"/>
-          <xsd:element name="postBuyFormInvoiceData" type="tns:PostBuyFormAddressStruct"/>
-          <xsd:element name="postBuyFormShipmentAddress" type="tns:PostBuyFormAddressStruct"/>
-          <xsd:element name="postBuyFormPayType" type="xsd:string"/>
-          <xsd:element name="postBuyFormPayId" type="xsd:long"/>
-          <xsd:element name="postBuyFormPayStatus" type="xsd:string"/>
-          <xsd:element name="postBuyFormDateInit" type="xsd:string"/>
-          <xsd:element name="postBuyFormDateRecv" type="xsd:string"/>
-          <xsd:element name="postBuyFormDateCancel" type="xsd:string"/>
-          <xsd:element name="postBuyFormShipmentId" type="xsd:int"/>
-          <xsd:element name="postBuyFormGdAddress" type="tns:PostBuyFormAddressStruct"/>
-          <xsd:element name="postBuyFormShipmentTracking" type="tns:ArrayOfPostbuyformshipmenttrackingstruct" minOccurs="0"/>
-          <xsd:element name="postBuyFormSurchargesList" type="tns:ArrayOfLong" minOccurs="0"/>
-          <xsd:element name="postBuyFormGdAdditionalInfo" type="xsd:string"/>
-          <xsd:element name="postBuyFormPaymentAmount" type="xsd:float"/>
-          <xsd:element name="postBuyFormSentBySeller" type="xsd:int"/>
-          <xsd:element name="postBuyFormBuyerLogin" type="xsd:string"/>
-          <xsd:element name="postBuyFormBuyerEmail" type="xsd:string"/>
-          <xsd:element name="postBuyFormAdditionalServicesAmount" type="xsd:float"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfPostbuyformdatastruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:PostBuyFormDataStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetPostBuyFormsDataForSellersResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="postBuyFormData" type="tns:ArrayOfPostbuyformdatastruct" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="RangeValueType">
-        <xsd:all>
-          <xsd:element name="rangeValueMin" type="xsd:string" minOccurs="0"/>
-          <xsd:element name="rangeValueMax" type="xsd:string" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="FilterOptionsType">
-        <xsd:all>
-          <xsd:element name="filterId" type="xsd:string"/>
-          <xsd:element name="filterValueId" type="tns:ArrayOfString" minOccurs="0"/>
-          <xsd:element name="filterValueRange" type="tns:RangeValueType" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfFilteroptionstype">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:FilterOptionsType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="DoGetPostBuyFormsIdsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="filterOptions" type="tns:ArrayOfFilteroptionstype" minOccurs="0"/>
-            <xsd:element name="resultSize" type="xsd:int" minOccurs="0"/>
-            <xsd:element name="resultOffset" type="xsd:int" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="FilterValueType">
-        <xsd:all>
-          <xsd:element name="filterValueId" type="xsd:string"/>
-          <xsd:element name="filterValueName" type="xsd:string"/>
-          <xsd:element name="filterValueCount" type="xsd:int" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfFiltervaluetype">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:FilterValueType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="FilterRelationType">
-        <xsd:all>
-          <xsd:element name="relationAnd" type="tns:ArrayOfString" minOccurs="0"/>
-          <xsd:element name="relationOr" type="tns:ArrayOfString" minOccurs="0"/>
-          <xsd:element name="relationExclude" type="tns:ArrayOfString" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="FiltersListType">
-        <xsd:all>
-          <xsd:element name="filterId" type="xsd:string"/>
-          <xsd:element name="filterName" type="xsd:string"/>
-          <xsd:element name="filterType" type="xsd:string"/>
-          <xsd:element name="filterControlType" type="xsd:string"/>
-          <xsd:element name="filterDataType" type="xsd:string"/>
-          <xsd:element name="filterIsRange" type="xsd:boolean"/>
-          <xsd:element name="filterArraySize" type="xsd:int" minOccurs="0"/>
-          <xsd:element name="filterValues" type="tns:ArrayOfFiltervaluetype" minOccurs="0"/>
-          <xsd:element name="filterRelations" type="tns:FilterRelationType" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfFilterslisttype">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:FiltersListType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetPostBuyFormsIdsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="formsCount" type="xsd:int"/>
-            <xsd:element name="formsIds" type="tns:ArrayOfLong" minOccurs="0"/>
-            <xsd:element name="filtersList" type="tns:ArrayOfFilterslisttype" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetRefundsDealsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="filterOptions" type="tns:ArrayOfFilteroptionstype" minOccurs="0"/>
-            <xsd:element name="sortOrder" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="resultSize" type="xsd:int" minOccurs="0"/>
-            <xsd:element name="resultOffset" type="xsd:int" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="RefundsDealsListType">
-        <xsd:all>
-          <xsd:element name="dealId" type="xsd:long"/>
-          <xsd:element name="dealDate" type="xsd:dateTime"/>
-          <xsd:element name="timeLeft" type="xsd:int"/>
-          <xsd:element name="buyerId" type="xsd:int"/>
-          <xsd:element name="buyerLogin" type="xsd:string"/>
-          <xsd:element name="itemId" type="xsd:long"/>
-          <xsd:element name="itemTitle" type="xsd:string"/>
-          <xsd:element name="bidsCount" type="xsd:int"/>
-          <xsd:element name="quantityType" type="xsd:string"/>
-          <xsd:element name="paymentStatus" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfRefundsdealslisttype">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:RefundsDealsListType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetRefundsDealsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="dealsCount" type="xsd:int"/>
-            <xsd:element name="dealsList" type="tns:ArrayOfRefundsdealslisttype" minOccurs="0"/>
-            <xsd:element name="filtersList" type="tns:ArrayOfFilterslisttype" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetRefundsListRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="filterOptions" type="tns:ArrayOfFilteroptionstype" minOccurs="0"/>
-            <xsd:element name="resultSize" type="xsd:int" minOccurs="0"/>
-            <xsd:element name="resultOffset" type="xsd:int" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="RefundDetailsType">
-        <xsd:all>
-          <xsd:element name="refundId" type="xsd:int"/>
-          <xsd:element name="refundStatus" type="xsd:string"/>
-          <xsd:element name="refundQuantity" type="xsd:int"/>
-          <xsd:element name="createdDate" type="xsd:dateTime"/>
-          <xsd:element name="considerDate" type="xsd:dateTime"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="RefundListType">
-        <xsd:all>
-          <xsd:element name="dealId" type="xsd:long"/>
-          <xsd:element name="dealDate" type="xsd:dateTime"/>
-          <xsd:element name="buyerId" type="xsd:int"/>
-          <xsd:element name="buyerLogin" type="xsd:string"/>
-          <xsd:element name="itemId" type="xsd:long"/>
-          <xsd:element name="itemTitle" type="xsd:string"/>
-          <xsd:element name="bidsCount" type="xsd:int"/>
-          <xsd:element name="quantityType" type="xsd:string"/>
-          <xsd:element name="refundDetails" type="tns:RefundDetailsType"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfRefundlisttype">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:RefundListType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetRefundsListResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="refundsCount" type="xsd:int"/>
-            <xsd:element name="refundsList" type="tns:ArrayOfRefundlisttype" minOccurs="0"/>
-            <xsd:element name="filtersList" type="tns:ArrayOfFilterslisttype" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetRefundsReasonsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="dealId" type="xsd:long"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="ReasonInfoType">
-        <xsd:all>
-          <xsd:element name="reasonId" type="xsd:int"/>
-          <xsd:element name="reasonName" type="xsd:string"/>
-          <xsd:element name="maxQuantity" type="xsd:int" minOccurs="0"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfReasoninfotype">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:ReasonInfoType" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetRefundsReasonsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="reasonsCount" type="xsd:int"/>
-            <xsd:element name="reasonsList" type="tns:ArrayOfReasoninfotype" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetShipmentDataRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="countryId" type="xsd:int"/>
-            <xsd:element name="webapiKey" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="ShipmentTimeStruct">
-        <xsd:all>
-          <xsd:element name="shipmentTimeFrom" type="xsd:int"/>
-          <xsd:element name="shipmentTimeTo" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ShipmentDataStruct">
-        <xsd:all>
-          <xsd:element name="shipmentId" type="xsd:int"/>
-          <xsd:element name="shipmentName" type="xsd:string"/>
-          <xsd:element name="shipmentType" type="xsd:int"/>
-          <xsd:element name="shipmentTime" type="tns:ShipmentTimeStruct"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfShipmentdatastruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:ShipmentDataStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetShipmentDataResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="shipmentDataList" type="tns:ArrayOfShipmentdatastruct" minOccurs="0"/>
-            <xsd:element name="localVersion" type="xsd:long"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="DoGetSiteJournalRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -987,60 +359,6 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="siteJournalArray" type="tns:ArrayOfSitejournal" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetSiteJournalDealsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="journalStart" type="xsd:long" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="SiteJournalDealsStruct">
-        <xsd:all>
-          <xsd:element name="dealEventId" type="xsd:long"/>
-          <xsd:element name="dealEventType" type="xsd:int"/>
-          <xsd:element name="dealEventTime" type="xsd:long"/>
-          <xsd:element name="dealId" type="xsd:long"/>
-          <xsd:element name="dealTransactionId" type="xsd:long"/>
-          <xsd:element name="dealSellerId" type="xsd:int"/>
-          <xsd:element name="dealItemId" type="xsd:long"/>
-          <xsd:element name="dealBuyerId" type="xsd:int"/>
-          <xsd:element name="dealQuantity" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfSitejournaldealsstruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:SiteJournalDealsStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doGetSiteJournalDealsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="siteJournalDeals" type="tns:ArrayOfSitejournaldealsstruct" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetSiteJournalDealsInfoRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="journalStart" type="xsd:long" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="SiteJournalDealsInfoStruct">
-        <xsd:all>
-          <xsd:element name="dealEventsCount" type="xsd:int"/>
-          <xsd:element name="dealLastEventTime" type="xsd:long"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:element name="doGetSiteJournalDealsInfoResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="siteJournalDealsInfo" type="tns:SiteJournalDealsInfoStruct"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1107,56 +425,6 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="DoGetTransactionsIDsRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionHandle" type="xsd:string"/>
-            <xsd:element name="itemsIdArray" type="tns:ArrayOfLong" minOccurs="0"/>
-            <xsd:element name="userRole" type="xsd:string"/>
-            <xsd:element name="shipmentIdArray" type="tns:ArrayOfLong" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="doGetTransactionsIDsResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="transactionsIdsArray" type="tns:ArrayOfLong" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetUserIDRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="countryId" type="xsd:int"/>
-            <xsd:element name="userLogin" type="xsd:string"/>
-            <xsd:element name="userEmail" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="webapiKey" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="doGetUserIDResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="userId" type="xsd:int"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoGetUserLoginRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="countryId" type="xsd:int"/>
-            <xsd:element name="userId" type="xsd:int"/>
-            <xsd:element name="webapiKey" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="doGetUserLoginResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="userLogin" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="DoLoginRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -1212,48 +480,6 @@
             <xsd:element name="sessionHandlePart" type="xsd:string"/>
             <xsd:element name="userId" type="xsd:long"/>
             <xsd:element name="serverTime" type="xsd:long"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoMyBillingRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionHandle" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="doMyBillingResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="myBilling" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoMyBillingItemRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionHandle" type="xsd:string"/>
-            <xsd:element name="itemId" type="xsd:long"/>
-            <xsd:element name="option" type="xsd:string" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="ItemBilling">
-        <xsd:all>
-          <xsd:element name="biName" type="xsd:string"/>
-          <xsd:element name="biValue" type="xsd:string"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfItembilling">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:ItemBilling" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doMyBillingItemResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="entryFees" type="tns:ArrayOfItembilling" minOccurs="0"/>
-            <xsd:element name="endingFees" type="tns:ArrayOfItembilling" minOccurs="0"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1324,23 +550,6 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="requestPayout" type="tns:RequestPayoutStruct"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="DoSendRefundFormRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string"/>
-            <xsd:element name="dealId" type="xsd:long"/>
-            <xsd:element name="reasonId" type="xsd:int"/>
-            <xsd:element name="refundQuantity" type="xsd:int" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="doSendRefundFormResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="refundId" type="xsd:long"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -1430,73 +639,9 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="DoShowUserRequest">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="webapiKey" type="xsd:string"/>
-            <xsd:element name="countryId" type="xsd:int"/>
-            <xsd:element name="userId" type="xsd:long" minOccurs="0"/>
-            <xsd:element name="userLogin" type="xsd:string" minOccurs="0"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="ShowUserFeedbacks">
-        <xsd:all>
-          <xsd:element name="userFLastWeek" type="xsd:int"/>
-          <xsd:element name="userFLastMonth" type="xsd:int"/>
-          <xsd:element name="userFAll" type="xsd:int"/>
-          <xsd:element name="userFSoldItems" type="xsd:int"/>
-          <xsd:element name="userFBuyItems" type="xsd:int"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="SellRatingAverageStruct">
-        <xsd:all>
-          <xsd:element name="sellRatingGroupTitle" type="xsd:string"/>
-          <xsd:element name="sellRatingGroupAverage" type="xsd:float"/>
-        </xsd:all>
-      </xsd:complexType>
-      <xsd:complexType name="ArrayOfSellratingaveragestruct">
-        <xsd:sequence>
-          <xsd:element name="item" type="tns:SellRatingAverageStruct" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="doShowUserResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="userId" type="xsd:long"/>
-            <xsd:element name="userLogin" type="xsd:string"/>
-            <xsd:element name="userCountry" type="xsd:int"/>
-            <xsd:element name="userCreateDate" type="xsd:long"/>
-            <xsd:element name="userLoginDate" type="xsd:long"/>
-            <xsd:element name="userRating" type="xsd:int"/>
-            <xsd:element name="userIsNewUser" type="xsd:int"/>
-            <xsd:element name="userNotActivated" type="xsd:int"/>
-            <xsd:element name="userClosed" type="xsd:int"/>
-            <xsd:element name="userBlocked" type="xsd:int"/>
-            <xsd:element name="userTerminated" type="xsd:int"/>
-            <xsd:element name="userHasPage" type="xsd:int"/>
-            <xsd:element name="userIsSseller" type="xsd:int"/>
-            <xsd:element name="userIsEco" type="xsd:int"/>
-            <xsd:element name="userPositiveFeedback" type="tns:ShowUserFeedbacks"/>
-            <xsd:element name="userNegativeFeedback" type="tns:ShowUserFeedbacks"/>
-            <xsd:element name="userNeutralFeedback" type="tns:ShowUserFeedbacks"/>
-            <xsd:element name="userJuniorStatus" type="xsd:int"/>
-            <xsd:element name="userHasShop" type="xsd:int"/>
-            <xsd:element name="userCompanyIcon" type="xsd:int"/>
-            <xsd:element name="userSellRatingCount" type="xsd:int"/>
-            <xsd:element name="userSellRatingAverage" type="tns:ArrayOfSellratingaveragestruct" minOccurs="0"/>
-            <xsd:element name="userIsAllegroStandard" type="xsd:int"/>
-            <xsd:element name="userIsB2cSeller" type="xsd:int"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
     </xsd:schema>
   </types>
   <portType name="servicePort">
-    <operation name="doAddPackageInfoToPostBuyForm">
-      <input message="tns:doAddPackageInfoToPostBuyFormIn"/>
-      <output message="tns:doAddPackageInfoToPostBuyFormOut"/>
-    </operation>
     <operation name="doGetBidItem2">
       <input message="tns:doGetBidItem2In"/>
       <output message="tns:doGetBidItem2Out"/>
@@ -1505,69 +650,17 @@
       <input message="tns:doGetCountriesIn"/>
       <output message="tns:doGetCountriesOut"/>
     </operation>
-    <operation name="doGetDeals">
-      <input message="tns:doGetDealsIn"/>
-      <output message="tns:doGetDealsOut"/>
-    </operation>
-    <operation name="doGetFilledPostBuyForms">
-      <input message="tns:doGetFilledPostBuyFormsIn"/>
-      <output message="tns:doGetFilledPostBuyFormsOut"/>
-    </operation>
     <operation name="doGetItemsInfo">
       <input message="tns:doGetItemsInfoIn"/>
       <output message="tns:doGetItemsInfoOut"/>
-    </operation>
-    <operation name="doGetMyData">
-      <input message="tns:doGetMyDataIn"/>
-      <output message="tns:doGetMyDataOut"/>
     </operation>
     <operation name="doGetMyPaymentsInfo">
       <input message="tns:doGetMyPaymentsInfoIn"/>
       <output message="tns:doGetMyPaymentsInfoOut"/>
     </operation>
-    <operation name="doGetPaymentMethods">
-      <input message="tns:doGetPaymentMethodsIn"/>
-      <output message="tns:doGetPaymentMethodsOut"/>
-    </operation>
-    <operation name="doGetPostBuyData">
-      <input message="tns:doGetPostBuyDataIn"/>
-      <output message="tns:doGetPostBuyDataOut"/>
-    </operation>
-    <operation name="doGetPostBuyFormsDataForSellers">
-      <input message="tns:doGetPostBuyFormsDataForSellersIn"/>
-      <output message="tns:doGetPostBuyFormsDataForSellersOut"/>
-    </operation>
-    <operation name="doGetPostBuyFormsIds">
-      <input message="tns:doGetPostBuyFormsIdsIn"/>
-      <output message="tns:doGetPostBuyFormsIdsOut"/>
-    </operation>
-    <operation name="doGetRefundsDeals">
-      <input message="tns:doGetRefundsDealsIn"/>
-      <output message="tns:doGetRefundsDealsOut"/>
-    </operation>
-    <operation name="doGetRefundsList">
-      <input message="tns:doGetRefundsListIn"/>
-      <output message="tns:doGetRefundsListOut"/>
-    </operation>
-    <operation name="doGetRefundsReasons">
-      <input message="tns:doGetRefundsReasonsIn"/>
-      <output message="tns:doGetRefundsReasonsOut"/>
-    </operation>
-    <operation name="doGetShipmentData">
-      <input message="tns:doGetShipmentDataIn"/>
-      <output message="tns:doGetShipmentDataOut"/>
-    </operation>
     <operation name="doGetSiteJournal">
       <input message="tns:doGetSiteJournalIn"/>
       <output message="tns:doGetSiteJournalOut"/>
-    </operation>
-    <operation name="doGetSiteJournalDeals">
-      <input message="tns:doGetSiteJournalDealsIn"/>
-      <output message="tns:doGetSiteJournalDealsOut"/>
-    </operation>
-    <operation name="doGetSiteJournalDealsInfo">
-      <input message="tns:doGetSiteJournalDealsInfoIn"/>
-      <output message="tns:doGetSiteJournalDealsInfoOut"/>
     </operation>
     <operation name="doGetSiteJournalInfo">
       <input message="tns:doGetSiteJournalInfoIn"/>
@@ -1581,18 +674,6 @@
       <input message="tns:doGetSystemTimeIn"/>
       <output message="tns:doGetSystemTimeOut"/>
     </operation>
-    <operation name="doGetTransactionsIDs">
-      <input message="tns:doGetTransactionsIDsIn"/>
-      <output message="tns:doGetTransactionsIDsOut"/>
-    </operation>
-    <operation name="doGetUserID">
-      <input message="tns:doGetUserIDIn"/>
-      <output message="tns:doGetUserIDOut"/>
-    </operation>
-    <operation name="doGetUserLogin">
-      <input message="tns:doGetUserLoginIn"/>
-      <output message="tns:doGetUserLoginOut"/>
-    </operation>
     <operation name="doLogin">
       <input message="tns:doLoginIn"/>
       <output message="tns:doLoginOut"/>
@@ -1604,14 +685,6 @@
     <operation name="doLoginWithAccessToken">
       <input message="tns:doLoginWithAccessTokenIn"/>
       <output message="tns:doLoginWithAccessTokenOut"/>
-    </operation>
-    <operation name="doMyBilling">
-      <input message="tns:doMyBillingIn"/>
-      <output message="tns:doMyBillingOut"/>
-    </operation>
-    <operation name="doMyBillingItem">
-      <input message="tns:doMyBillingItemIn"/>
-      <output message="tns:doMyBillingItemOut"/>
     </operation>
     <operation name="doQueryAllSysStatus">
       <input message="tns:doQueryAllSysStatusIn"/>
@@ -1625,30 +698,13 @@
       <input message="tns:doRequestPayoutIn"/>
       <output message="tns:doRequestPayoutOut"/>
     </operation>
-    <operation name="doSendRefundForm">
-      <input message="tns:doSendRefundFormIn"/>
-      <output message="tns:doSendRefundFormOut"/>
-    </operation>
     <operation name="doShowItemInfoExt">
       <input message="tns:doShowItemInfoExtIn"/>
       <output message="tns:doShowItemInfoExtOut"/>
     </operation>
-    <operation name="doShowUser">
-      <input message="tns:doShowUserIn"/>
-      <output message="tns:doShowUserOut"/>
-    </operation>
   </portType>
   <binding name="serviceBinding" type="tns:servicePort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <operation name="doAddPackageInfoToPostBuyForm">
-      <soap:operation soapAction="#doAddPackageInfoToPostBuyForm"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
     <operation name="doGetBidItem2">
       <soap:operation soapAction="#doGetBidItem2"/>
       <input>
@@ -1667,35 +723,8 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="doGetDeals">
-      <soap:operation soapAction="#doGetDeals"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetFilledPostBuyForms">
-      <soap:operation soapAction="#doGetFilledPostBuyForms"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
     <operation name="doGetItemsInfo">
       <soap:operation soapAction="#doGetItemsInfo"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetMyData">
-      <soap:operation soapAction="#doGetMyData"/>
       <input>
         <soap:body use="literal"/>
       </input>
@@ -1712,98 +741,8 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="doGetPaymentMethods">
-      <soap:operation soapAction="#doGetPaymentMethods"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetPostBuyData">
-      <soap:operation soapAction="#doGetPostBuyData"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetPostBuyFormsDataForSellers">
-      <soap:operation soapAction="#doGetPostBuyFormsDataForSellers"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetPostBuyFormsIds">
-      <soap:operation soapAction="#doGetPostBuyFormsIds"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetRefundsDeals">
-      <soap:operation soapAction="#doGetRefundsDeals"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetRefundsList">
-      <soap:operation soapAction="#doGetRefundsList"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetRefundsReasons">
-      <soap:operation soapAction="#doGetRefundsReasons"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetShipmentData">
-      <soap:operation soapAction="#doGetShipmentData"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
     <operation name="doGetSiteJournal">
       <soap:operation soapAction="#doGetSiteJournal"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetSiteJournalDeals">
-      <soap:operation soapAction="#doGetSiteJournalDeals"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetSiteJournalDealsInfo">
-      <soap:operation soapAction="#doGetSiteJournalDealsInfo"/>
       <input>
         <soap:body use="literal"/>
       </input>
@@ -1838,33 +777,6 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="doGetTransactionsIDs">
-      <soap:operation soapAction="#doGetTransactionsIDs"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetUserID">
-      <soap:operation soapAction="#doGetUserID"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doGetUserLogin">
-      <soap:operation soapAction="#doGetUserLogin"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
     <operation name="doLogin">
       <soap:operation soapAction="#doLogin"/>
       <input>
@@ -1885,24 +797,6 @@
     </operation>
     <operation name="doLoginWithAccessToken">
       <soap:operation soapAction="#doLoginWithAccessToken"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doMyBilling">
-      <soap:operation soapAction="#doMyBilling"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doMyBillingItem">
-      <soap:operation soapAction="#doMyBillingItem"/>
       <input>
         <soap:body use="literal"/>
       </input>
@@ -1937,26 +831,8 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="doSendRefundForm">
-      <soap:operation soapAction="#doSendRefundForm"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
     <operation name="doShowItemInfoExt">
       <soap:operation soapAction="#doShowItemInfoExt"/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="doShowUser">
-      <soap:operation soapAction="#doShowUser"/>
       <input>
         <soap:body use="literal"/>
       </input>
@@ -1970,12 +846,6 @@
       <soap:address location="https://webapi.allegro.pl/service.php"/>
     </port>
   </service>
-  <message name="doAddPackageInfoToPostBuyFormIn">
-    <part name="parameters" element="tns:DoAddPackageInfoToPostBuyFormRequest"/>
-  </message>
-  <message name="doAddPackageInfoToPostBuyFormOut">
-    <part name="parameters" element="tns:doAddPackageInfoToPostBuyFormResponse"/>
-  </message>
   <message name="doGetBidItem2In">
     <part name="parameters" element="tns:DoGetBidItem2Request"/>
   </message>
@@ -1988,29 +858,11 @@
   <message name="doGetCountriesOut">
     <part name="parameters" element="tns:doGetCountriesResponse"/>
   </message>
-  <message name="doGetDealsIn">
-    <part name="parameters" element="tns:DoGetDealsRequest"/>
-  </message>
-  <message name="doGetDealsOut">
-    <part name="parameters" element="tns:doGetDealsResponse"/>
-  </message>
-  <message name="doGetFilledPostBuyFormsIn">
-    <part name="parameters" element="tns:DoGetFilledPostBuyFormsRequest"/>
-  </message>
-  <message name="doGetFilledPostBuyFormsOut">
-    <part name="parameters" element="tns:doGetFilledPostBuyFormsResponse"/>
-  </message>
   <message name="doGetItemsInfoIn">
     <part name="parameters" element="tns:DoGetItemsInfoRequest"/>
   </message>
   <message name="doGetItemsInfoOut">
     <part name="parameters" element="tns:doGetItemsInfoResponse"/>
-  </message>
-  <message name="doGetMyDataIn">
-    <part name="parameters" element="tns:DoGetMyDataRequest"/>
-  </message>
-  <message name="doGetMyDataOut">
-    <part name="parameters" element="tns:doGetMyDataResponse"/>
   </message>
   <message name="doGetMyPaymentsInfoIn">
     <part name="parameters" element="tns:DoGetMyPaymentsInfoRequest"/>
@@ -2018,71 +870,11 @@
   <message name="doGetMyPaymentsInfoOut">
     <part name="parameters" element="tns:doGetMyPaymentsInfoResponse"/>
   </message>
-  <message name="doGetPaymentMethodsIn">
-    <part name="parameters" element="tns:DoGetPaymentMethodsRequest"/>
-  </message>
-  <message name="doGetPaymentMethodsOut">
-    <part name="parameters" element="tns:doGetPaymentMethodsResponse"/>
-  </message>
-  <message name="doGetPostBuyDataIn">
-    <part name="parameters" element="tns:DoGetPostBuyDataRequest"/>
-  </message>
-  <message name="doGetPostBuyDataOut">
-    <part name="parameters" element="tns:doGetPostBuyDataResponse"/>
-  </message>
-  <message name="doGetPostBuyFormsDataForSellersIn">
-    <part name="parameters" element="tns:DoGetPostBuyFormsDataForSellersRequest"/>
-  </message>
-  <message name="doGetPostBuyFormsDataForSellersOut">
-    <part name="parameters" element="tns:doGetPostBuyFormsDataForSellersResponse"/>
-  </message>
-  <message name="doGetPostBuyFormsIdsIn">
-    <part name="parameters" element="tns:DoGetPostBuyFormsIdsRequest"/>
-  </message>
-  <message name="doGetPostBuyFormsIdsOut">
-    <part name="parameters" element="tns:doGetPostBuyFormsIdsResponse"/>
-  </message>
-  <message name="doGetRefundsDealsIn">
-    <part name="parameters" element="tns:DoGetRefundsDealsRequest"/>
-  </message>
-  <message name="doGetRefundsDealsOut">
-    <part name="parameters" element="tns:doGetRefundsDealsResponse"/>
-  </message>
-  <message name="doGetRefundsListIn">
-    <part name="parameters" element="tns:DoGetRefundsListRequest"/>
-  </message>
-  <message name="doGetRefundsListOut">
-    <part name="parameters" element="tns:doGetRefundsListResponse"/>
-  </message>
-  <message name="doGetRefundsReasonsIn">
-    <part name="parameters" element="tns:DoGetRefundsReasonsRequest"/>
-  </message>
-  <message name="doGetRefundsReasonsOut">
-    <part name="parameters" element="tns:doGetRefundsReasonsResponse"/>
-  </message>
-  <message name="doGetShipmentDataIn">
-    <part name="parameters" element="tns:DoGetShipmentDataRequest"/>
-  </message>
-  <message name="doGetShipmentDataOut">
-    <part name="parameters" element="tns:doGetShipmentDataResponse"/>
-  </message>
   <message name="doGetSiteJournalIn">
     <part name="parameters" element="tns:DoGetSiteJournalRequest"/>
   </message>
   <message name="doGetSiteJournalOut">
     <part name="parameters" element="tns:doGetSiteJournalResponse"/>
-  </message>
-  <message name="doGetSiteJournalDealsIn">
-    <part name="parameters" element="tns:DoGetSiteJournalDealsRequest"/>
-  </message>
-  <message name="doGetSiteJournalDealsOut">
-    <part name="parameters" element="tns:doGetSiteJournalDealsResponse"/>
-  </message>
-  <message name="doGetSiteJournalDealsInfoIn">
-    <part name="parameters" element="tns:DoGetSiteJournalDealsInfoRequest"/>
-  </message>
-  <message name="doGetSiteJournalDealsInfoOut">
-    <part name="parameters" element="tns:doGetSiteJournalDealsInfoResponse"/>
   </message>
   <message name="doGetSiteJournalInfoIn">
     <part name="parameters" element="tns:DoGetSiteJournalInfoRequest"/>
@@ -2102,24 +894,6 @@
   <message name="doGetSystemTimeOut">
     <part name="parameters" element="tns:doGetSystemTimeResponse"/>
   </message>
-  <message name="doGetTransactionsIDsIn">
-    <part name="parameters" element="tns:DoGetTransactionsIDsRequest"/>
-  </message>
-  <message name="doGetTransactionsIDsOut">
-    <part name="parameters" element="tns:doGetTransactionsIDsResponse"/>
-  </message>
-  <message name="doGetUserIDIn">
-    <part name="parameters" element="tns:DoGetUserIDRequest"/>
-  </message>
-  <message name="doGetUserIDOut">
-    <part name="parameters" element="tns:doGetUserIDResponse"/>
-  </message>
-  <message name="doGetUserLoginIn">
-    <part name="parameters" element="tns:DoGetUserLoginRequest"/>
-  </message>
-  <message name="doGetUserLoginOut">
-    <part name="parameters" element="tns:doGetUserLoginResponse"/>
-  </message>
   <message name="doLoginIn">
     <part name="parameters" element="tns:DoLoginRequest"/>
   </message>
@@ -2137,18 +911,6 @@
   </message>
   <message name="doLoginWithAccessTokenOut">
     <part name="parameters" element="tns:doLoginWithAccessTokenResponse"/>
-  </message>
-  <message name="doMyBillingIn">
-    <part name="parameters" element="tns:DoMyBillingRequest"/>
-  </message>
-  <message name="doMyBillingOut">
-    <part name="parameters" element="tns:doMyBillingResponse"/>
-  </message>
-  <message name="doMyBillingItemIn">
-    <part name="parameters" element="tns:DoMyBillingItemRequest"/>
-  </message>
-  <message name="doMyBillingItemOut">
-    <part name="parameters" element="tns:doMyBillingItemResponse"/>
   </message>
   <message name="doQueryAllSysStatusIn">
     <part name="parameters" element="tns:DoQueryAllSysStatusRequest"/>
@@ -2168,22 +930,10 @@
   <message name="doRequestPayoutOut">
     <part name="parameters" element="tns:doRequestPayoutResponse"/>
   </message>
-  <message name="doSendRefundFormIn">
-    <part name="parameters" element="tns:DoSendRefundFormRequest"/>
-  </message>
-  <message name="doSendRefundFormOut">
-    <part name="parameters" element="tns:doSendRefundFormResponse"/>
-  </message>
   <message name="doShowItemInfoExtIn">
     <part name="parameters" element="tns:DoShowItemInfoExtRequest"/>
   </message>
   <message name="doShowItemInfoExtOut">
     <part name="parameters" element="tns:doShowItemInfoExtResponse"/>
-  </message>
-  <message name="doShowUserIn">
-    <part name="parameters" element="tns:DoShowUserRequest"/>
-  </message>
-  <message name="doShowUserOut">
-    <part name="parameters" element="tns:doShowUserResponse"/>
   </message>
 </definitions>
